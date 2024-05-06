@@ -17,6 +17,7 @@ jobs:
       - name: Install Dependencies and Build
         run: |
           # Exemplo: comandos para instalar dependências e compilar sua aplicação
+          npm install -g pnpm
           pnpm install
           pnpm run build
 
