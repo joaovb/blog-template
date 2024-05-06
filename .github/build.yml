@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - develop  # ajuste conforme a branch principal do seu repositório
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      # Adicione aqui as etapas de build da sua aplicação
+      - name: Install Dependencies and Build
+        run: |
+          # Exemplo: comandos para instalar dependências e compilar sua aplicação
+          pnpm install
+          pnpm run build
+
+      - name: Archive Build Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: dist
