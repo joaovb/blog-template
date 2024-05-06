@@ -13,7 +13,7 @@
 
 </div>
 
-## 📌 Table Of Contents.
+## 📌 Table Of Contents
 
 1. [Demo](#-Demo)
 2. [CMS](#-Tina-CMS)
