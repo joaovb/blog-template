@@ -1,4 +1,4 @@
-name: Build
+name: CI/CD
 
 on:
   push:
@@ -26,12 +26,11 @@ jobs:
         with:
           name: build
           path: dist
-    deploy:
+  deploy:
       runs-on: ubuntu-latest
       needs: build  # Este trabalho precisa do trabalho 'build' para ser bem-sucedido antes de ser executado
 
-
-    steps:
+      steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
