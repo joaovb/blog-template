@@ -48,10 +48,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            pwd
-            cd blog-template/
-            ls -la
             # Exemplo: comandos para copiar os arquivos para o servidor e reiniciar serviços
-            scp -r /home/blog-template/dist/*  ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/var/www/html
+            scp -r /home/runner/work/blog-template/dist/*  ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/var/www/html
             ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} 'sudo systemctl restart apache2'
 
