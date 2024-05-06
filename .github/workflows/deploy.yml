@@ -1,5 +1,13 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
+
+jobs:
   deploy:
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -21,5 +29,5 @@
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             # Exemplo: comandos para copiar os arquivos para o servidor e reiniciar serviços
-            scp -r dist/* user@server:/var/www/html
+            scp -r dist/* user@server:/path/to/destination
             ssh user@server 'sudo systemctl restart apache2'
