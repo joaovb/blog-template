@@ -1,0 +1,25 @@
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: dist
+
+      # Adicione aqui as etapas de deploy da sua aplicação
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # Exemplo: comandos para copiar os arquivos para o servidor e reiniciar serviços
+            scp -r dist/* user@server:/var/www/html
+            ssh user@server 'sudo systemctl restart apache2'
