@@ -48,5 +48,5 @@ jobs:
         server: ${{ secrets.ftp_host }}
         username: ${{ secrets.ftp_user }}
         password: ${{ secrets.ftp_password }}
-        server-dir: caiocalderaro/
+        server-dir: test/
         local-dir: dist/ # Utiliza o conteúdo baixado do passo de build
