@@ -34,7 +34,13 @@ jobs:
 
     steps:
     - name: 🚚 Get latest code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v2
+    
+    - name: 📂 Download Build Artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: build
+        path: dist
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -42,4 +48,5 @@ jobs:
         server: ${{ secrets.ftp_host }}
         username: ${{ secrets.ftp_user }}
         password: ${{ secrets.ftp_password }}
-        server-dir: public_html/
+        server-dir: isso/
+        local-dir: dist/ # Utiliza o conteúdo baixado do passo de build
